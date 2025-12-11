@@ -48,6 +48,34 @@ export default class TerminalStore {
     return cluster ? `/klusters/${cluster}` : ''
   }
 
+  // 添加获取终端上传URL的方法
+  getTerminalUploadUrl(params) {
+    const {
+      // cluster,
+      namespace,
+      pod,
+      container,
+    } = params
+    // const clusterPath = this.getClusterPath({ cluster })
+    // TODO 暂未处理多集群
+    // return `kapis/terminal.kubesphere.io/v1alpha2${clusterPath}/namespaces/${namespace}/pods/${pod}/file?container=${container}`
+    return `kapis/terminal.kubesphere.io/v1alpha2/namespaces/${namespace}/pods/${pod}/file?container=${container}`
+  }
+
+  // 添加获取终端下载URL的方法
+  getTerminalDownloadUrl(params) {
+    const {
+      // cluster,
+      namespace,
+      pod,
+      container,
+    } = params
+    // const clusterPath = this.getClusterPath({ cluster })
+    // TODO 暂未处理多集群
+    // return `kapis/terminal.kubesphere.io/v1alpha2${clusterPath}/namespaces/${namespace}/pods/${pod}/file?container=${container}`
+    return `kapis/terminal.kubesphere.io/v1alpha2/namespaces/${namespace}/pods/${pod}/file?container=${container}`
+  }
+
   async kubeWebsocketUrl() {
     const {
       cluster,

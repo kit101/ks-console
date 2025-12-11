@@ -27,6 +27,7 @@ import TerminalStore from 'stores/terminal'
 import { TypeSelect } from 'components/Base'
 import ContainerTerminal from 'components/Terminal'
 import fullscreen from 'components/Modals/FullscreenModal'
+import { createURL } from 'utils/request'
 
 import { observable } from 'mobx'
 import styles from './index.scss'
@@ -102,6 +103,38 @@ export default class ContainerTerminalModal extends React.Component {
     )
   }
 
+  // 获取终端上传URL
+  getTerminalUploadUrl = () => {
+    const {
+      cluster,
+      namespace,
+      podName,
+      containerName,
+    } = this.props.match.params
+    return this.store.getTerminalUploadUrl({
+      cluster,
+      namespace,
+      pod: podName,
+      container: containerName,
+    })
+  }
+
+  // 获取终端下载URL
+  getTerminalDownloadUrl = () => {
+    const {
+      cluster,
+      namespace,
+      podName,
+      containerName,
+    } = this.props.match.params
+    return this.store.getTerminalDownloadUrl({
+      cluster,
+      namespace,
+      pod: podName,
+      container: containerName,
+    })
+  }
+
   renderContainerMsg() {
     const selectContainer = this.container
     const defaultContainers = [
@@ -156,11 +189,19 @@ export default class ContainerTerminalModal extends React.Component {
   }
 
   render() {
+    // 获取上传和下载URL
+    const uploadUrl = this.getTerminalUploadUrl()
+    const downloadUrl = this.getTerminalDownloadUrl()
+
     return (
       <div className={styles.kubectl}>
         <div className={styles.terminalWrapper}>
           <div className={classnames(styles.pane, styles.terminal)}>
-            <ContainerTerminal url={this.url} />
+            <ContainerTerminal
+              url={this.url}
+              uploadUrl={createURL(uploadUrl)}
+              downloadUrl={createURL(downloadUrl)}
+            />
           </div>
         </div>
         <div className={styles.tipWrapper}>{this.renderContainerMsg()}</div>
