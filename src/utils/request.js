@@ -137,7 +137,7 @@ function watchResource(url, params = {}, callback) {
  * @returns {String}
  * @private
  */
-function createURL(path) {
+export function createURL(path) {
   if (path.startsWith('http')) {
     return path
   }
