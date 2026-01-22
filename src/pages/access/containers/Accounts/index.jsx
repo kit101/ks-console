@@ -151,6 +151,21 @@ export default class Accounts extends React.Component {
     }
   }
 
+  get columnSearch() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'description',
+        title: t('DESCRIPTION'),
+        search: true,
+      },
+    ]
+  }
+
   getColumns = () => [
     {
       title: t('USERNAME'),
@@ -190,6 +205,12 @@ export default class Accounts extends React.Component {
           ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss')
           : t('NOT_LOGIN_YET'),
     },
+    {
+      title: t('DESCRIPTION'),
+      dataIndex: 'description',
+      isHideable: true,
+      width: '20%',
+    },
   ]
 
   showCreate = () =>
@@ -207,6 +228,7 @@ export default class Accounts extends React.Component {
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}
+          // columnSearch={this.columnSearch}
           searchType="name"
         />
       </ListPage>
