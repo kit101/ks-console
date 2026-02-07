@@ -20,7 +20,7 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
-import { Loading } from '@kube-design/components'
+import { Loading, Notify } from '@kube-design/components'
 
 import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
 import { getCronJobStatus } from 'utils/status'
@@ -66,6 +66,15 @@ export default class JobDetail extends React.Component {
   }
 
   getOperations = () => [
+    {
+      key: 'immediate-execute',
+      icon: 'triangle-right',
+      text: t('CRONJOB_IMMEDIATE_EXECUTE'),
+      action: 'edit',
+      onClick: () => {
+        this.handleImmediateExecute()
+      },
+    },
     {
       key: 'edit',
       icon: 'pen',
@@ -123,6 +132,19 @@ export default class JobDetail extends React.Component {
   handleSwitch = params => () => {
     this.store.switch(this.store.detail, params).then(() => {
       this.fetchData()
+    })
+  }
+
+  handleImmediateExecute = () => {
+    window._t = this
+    this.store.immediateExecute(this.store.detail).then(res => {
+      const jobName = res?.metadata?.name || ''
+      Notify.success({
+        content: `${t('CRONJOB_IMMEDIATE_EXECUTE_SUCCESS')}: ${jobName}`,
+      })
+      if (this.store.fetchJobRecords) {
+        this.store.fetchJobRecords()
+      }
     })
   }
 

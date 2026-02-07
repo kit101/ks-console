@@ -36,5 +36,10 @@ export default path => [
     exact: true,
   },
   { path: `${path}/events`, title: 'EVENT_PL', component: Events, exact: true },
-  getIndexRoute({ path, to: `${path}/records`, exact: true }),
+  getIndexRoute({
+    path,
+    to: `${path}/records`,
+    exact: true,
+    extraProp: { path: `${path}` },
+  }),
 ]

@@ -90,7 +90,7 @@ export const getDaemonSetStatus = ({ status }) => {
 }
 
 export const getJobStatus = ({ spec, status }) => {
-  if (isEmpty(status)) return 'Failed'
+  if (isEmpty(spec) && isEmpty(status)) return 'Failed'
 
   let _status = 'RUNNING'
 
