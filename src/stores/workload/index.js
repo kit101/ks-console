@@ -186,6 +186,13 @@ export default class WorkloadStore extends Base {
     return this.submitting(Promise.all(promises))
   }
 
+  @action
+  immediateExecute(params) {
+    const resourceUrl = this.getResourceUrl(params);
+    const url = `${resourceUrl}/${params.name}/immediate-execute`;
+    return this.submitting(request.post(url))
+  }
+
   async getReplica(params) {
     const result = await request.get(this.getDetailUrl(params))
     const detail = { ...params, ...this.mapper(result) }

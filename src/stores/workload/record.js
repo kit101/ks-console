@@ -18,6 +18,7 @@
 
 import { action, observable } from 'mobx'
 import { isEmpty, get } from 'lodash'
+import moment from 'moment-mini'
 
 import { joinSelector } from 'utils'
 
@@ -55,9 +56,18 @@ export default class RecordStore extends Base {
       params
     )
     const data = result.items || []
-
+    // 按metadata.creationTimestamp 降序排序
+    const finalData = data
+      .sort((a, b) => {
+        return (
+          moment(b.metadata.creationTimestamp).unix() -
+          moment(a.metadata.creationTimestamp).unix()
+        )
+      })
+      .map(this.mapper)
+    // const finalData = data.map(this.mapper);
     this.list.update({
-      data: data.map(this.mapper),
+      data: finalData,
       total: data.length,
       isLoading: false,
       selectedRowKeys: [],

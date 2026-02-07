@@ -59,5 +59,8 @@ module.exports = {
   // List > Pause
   // List > Delete
   CRONJOB_PL: 'Cron işleri',
-  CRONJOB_LOW: 'cronişi'
+  CRONJOB_LOW: 'cronişi',
+  // List > Immediate Execution
+  CRONJOB_IMMEDIATE_EXECUTE: 'Hemen Yürüt',
+  CRONJOB_IMMEDIATE_EXECUTE_SUCCESS: 'Cronjob başarıyla oluşturuldu',
 };

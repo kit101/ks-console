@@ -59,5 +59,8 @@ module.exports = {
   // List > Pause
   // List > Delete
   CRONJOB_PL: '크론잡',
-  CRONJOB_LOW: '크론잡'
+  CRONJOB_LOW: '크론잡',
+  // List > Immediate Execution
+  CRONJOB_IMMEDIATE_EXECUTE: '즉시 실행',
+  CRONJOB_IMMEDIATE_EXECUTE_SUCCESS: '크론잡이 성공적으로 생성되었습니다',
 };

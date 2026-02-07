@@ -59,5 +59,8 @@ module.exports = {
   // List > Pause
   // List > Delete
   CRONJOB_PL: '定時任務',
-  CRONJOB_LOW: '定時任務'
+  CRONJOB_LOW: '定時任務',
+  // List > Immediate Execution
+  CRONJOB_IMMEDIATE_EXECUTE: '即時執行',
+  CRONJOB_IMMEDIATE_EXECUTE_SUCCESS: '定時任務已成功創建',
 };

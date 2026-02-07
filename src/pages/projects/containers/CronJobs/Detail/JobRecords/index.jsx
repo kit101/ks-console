@@ -59,6 +59,7 @@ class JobRecords extends React.Component {
 
   componentDidMount() {
     this.fetchData()
+    this.props.detailStore.fetchJobRecords = this.fetchData
   }
 
   fetchData = params => {

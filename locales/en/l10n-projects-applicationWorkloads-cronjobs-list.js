@@ -61,4 +61,7 @@ module.exports = {
   // List > Delete
   CRONJOB_PL: 'Cronjobs',
   CRONJOB_LOW: 'cronjob',
+  // List > Immediate Execution
+  CRONJOB_IMMEDIATE_EXECUTE: 'Immediate Execute',
+  CRONJOB_IMMEDIATE_EXECUTE_SUCCESS: 'Successfully triggered immediate execution, job name: ',
 }

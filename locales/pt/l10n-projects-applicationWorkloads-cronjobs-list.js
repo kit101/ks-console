@@ -59,5 +59,8 @@ module.exports = {
   // List > Pause
   // List > Delete
   CRONJOB_PL: 'Cronjobs',
-  CRONJOB_LOW: 'cronjob'
+  CRONJOB_LOW: 'cronjob',
+  // List > Immediate Execution
+  CRONJOB_IMMEDIATE_EXECUTE: 'Executar imediatamente',
+  CRONJOB_IMMEDIATE_EXECUTE_SUCCESS: 'Cronjob criado com sucesso',
 };
