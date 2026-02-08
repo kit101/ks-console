@@ -187,9 +187,16 @@ export default class WorkloadStore extends Base {
   }
 
   @action
-  immediateExecute(params) {
-    const resourceUrl = this.getResourceUrl(params);
-    const url = `${resourceUrl}/${params.name}/immediate-execute`;
+  async immediateExecute(params) {
+    const { name, cluster, namespace } = params
+    const result = await request.get(
+      this.getDetailUrl({ name, cluster, namespace })
+    )
+    const resourceVersion = get(result, 'metadata.resourceVersion')
+    const url = `kapis/operations.kubesphere.io/v1alpha2${this.getPath({
+      cluster,
+      namespace,
+    })}/cronjobs/${name}?action=immediate-execute&resourceVersion=${resourceVersion}`
     return this.submitting(request.post(url))
   }
 

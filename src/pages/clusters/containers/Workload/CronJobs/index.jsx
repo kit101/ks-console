@@ -18,6 +18,7 @@
 
 import ResourceTable from 'clusters/components/ResourceTable'
 
+import { Notify } from '@kube-design/components'
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { ListPage, withClusterList } from 'components/HOCs/withList'
@@ -63,6 +64,15 @@ export default class CronJobs extends React.Component {
   get itemActions() {
     const { trigger, name } = this.props
     return [
+      {
+        key: 'immediate-execute',
+        icon: 'triangle-right',
+        text: t('CRONJOB_IMMEDIATE_EXECUTE'),
+        action: 'edit',
+        onClick: item => {
+          this.handleImmediateExecute(item)
+        },
+      },
       {
         key: 'edit',
         icon: 'pen',
@@ -116,6 +126,15 @@ export default class CronJobs extends React.Component {
   handleSwitch = params => item => {
     this.props.store.switch(item, params).then(() => {
       this.props.routing.query()
+    })
+  }
+
+  handleImmediateExecute = item => {
+    this.props.store.immediateExecute(item).then(res => {
+      const jobName = res?.metadata?.name || ''
+      Notify.success({
+        content: `${t('CRONJOB_IMMEDIATE_EXECUTE_SUCCESS')}: ${jobName}`,
+      })
     })
   }
 
