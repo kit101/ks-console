@@ -22,7 +22,11 @@ import { get } from 'lodash'
 import { Form, Input, InputPassword, Checkbox } from '@kube-design/components'
 import { UrlInput } from 'components/Inputs'
 
-import { PATTERN_HOST, PATTERN_PORT } from 'utils/constants'
+import {
+  PATTERN_HOST,
+  PATTERN_PORT,
+  PATTERN_EMAIL_WITH_ALIAS,
+} from 'utils/constants'
 
 import BaseForm from '../BaseForm'
 import Item from './Item'
@@ -99,7 +103,10 @@ export default class MailForm extends Component {
             label={t('SENDER_EMAIL')}
             rules={[
               { required: true, message: t('EMAIL_EMPTY_DESC') },
-              { type: 'email', message: t('INVALID_EMAIL_ADDRESS_DESC') },
+              {
+                pattern: PATTERN_EMAIL_WITH_ALIAS,
+                message: t('INVALID_EMAIL_ADDRESS_DESC'),
+              },
             ]}
           >
             <Input

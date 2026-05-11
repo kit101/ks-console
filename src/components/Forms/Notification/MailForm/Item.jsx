@@ -25,7 +25,7 @@ import { Notify } from '@kube-design/components'
 import { List } from 'components/Base'
 import { BoxInput } from 'components/Inputs'
 
-import { PATTERN_EMAIL } from 'utils/constants'
+import { PATTERN_EMAIL_WITH_ALIAS } from 'utils/constants'
 
 import UserStore from 'stores/user'
 
@@ -65,7 +65,7 @@ export default class Item extends React.Component {
       })
       return
     }
-    if (!PATTERN_EMAIL.test(email)) {
+    if (!PATTERN_EMAIL_WITH_ALIAS.test(email)) {
       Notify.error({ content: t('INVALID_EMAIL'), duration: 1000 })
       return
     }

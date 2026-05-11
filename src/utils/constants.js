@@ -599,6 +599,8 @@ export const PATTERN_HOST = /^(?=^.{3,255}$)[*a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-
 
 export const PATTERN_URL = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)\/?$/
 export const PATTERN_EMAIL = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
+// 支持: "email@example.com" 或 "User Alias <email@example.com>"
+export const PATTERN_EMAIL_WITH_ALIAS = /^(?:[^<]+<\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*>|\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)$/
 export const PATTERN_IP = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/
 export const PATTERN_IP_MASK = /^[1-9][0-9]*$/
 export const PATTERN_PORT = /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/
